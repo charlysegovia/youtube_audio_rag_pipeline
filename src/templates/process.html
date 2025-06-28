@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>Process Video</h1>
+  <form method="post" action="{{ url_for('process_video') }}">
+    <label for="video_url">Video URL</label><br>
+    <input type="text" id="video_url" name="video_url" required size="60"><br><br>
+
+    <label for="pinecone_index">Pinecone Index</label><br>
+    <select id="pinecone_index" name="pinecone_index">
+      {% for idx in index_list %}
+        <option value="{{ idx }}" {% if idx == selected_index %}selected{% endif %}>
+          {{ idx }}
+        </option>
+      {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Run Pipeline</button>
+  </form>
+
+  {% if status %}
+    <h2>Pipeline Status</h2>
+    <ul>
+      {% for step in status %}
+        <li>{{ step }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

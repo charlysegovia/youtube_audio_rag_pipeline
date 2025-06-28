@@ -1,0 +1,10 @@
+yt-dlp
+pydub
+ffmpeg-python
+openai
+pinecone
+flask
+tiktoken
+nltk
+markdown
+python-dotenv

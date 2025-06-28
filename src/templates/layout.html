@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>YouTube RAG Pipeline</title>
+</head>
+<body>
+  <nav>
+    <a href="{{ url_for('process_video') }}">Process Video</a> |
+    <a href="{{ url_for('ask_question') }}">Ask a Question</a>
+  </nav>
+  <hr>
+  {% block content %}{% endblock %}
+</body>
+</html>

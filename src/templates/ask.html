@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>Ask a Question</h1>
+  <form method="post" action="{{ url_for('ask_question') }}">
+    <label for="query">Your Question</label><br>
+    <input type="text" id="query" name="query" required size="60"><br><br>
+
+    <label for="pinecone_index">Pinecone Index</label><br>
+    <select id="pinecone_index" name="pinecone_index">
+      {% for idx in index_list %}
+        <option value="{{ idx }}" {% if idx == selected_index %}selected{% endif %}>
+          {{ idx }}
+        </option>
+      {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  {% if answer %}
+    <h2>Answer</h2>
+    <p>{{ answer }}</p>
+  {% endif %}
+{% endblock %}
