@@ -28,6 +28,7 @@ CATEGORIES = [
     "data catalog",
     "metadata management",
     "monitoring",
+    "vector database",
 ]
 
 def get_categories_from_chunk(text: str) -> list[str]:

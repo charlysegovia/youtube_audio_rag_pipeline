@@ -1,6 +1,12 @@
 # YouTube Audio RAG Pipeline
 
-This project downloads a YouTube video, extracts and converts its audio, transcribes it with OpenAI Whisper, splits the transcript into chunks, generates embeddings, and uploads them to a Pinecone index. It includes both a command-line interface and a simple Flask web UI for running the pipeline and asking questions against your indexed content.
+This project was developed as an assignment for the Data Engineering Bootcamp (May 2025) at https://www.dataexpert.io/.
+This repository provides a **very simple**, easy-to-understand example to quickly implement a Retrieval-Augmented Generation (RAG) solution that lets you ask questions and search over video content. It is designed for rapid experimentation and learning.
+
+**Note:**
+- This pipeline is intended for videos generally under **20 minutes** in length.
+- The extracted MP3 audio files should not exceed **25 MB** in size.
+- When using this pipeline in your own context, be sure to adjust the `CATEGORIES` list in `src/categories.py` to match the domain and content of your videos.
 
 ---
 
@@ -59,7 +65,6 @@ This project downloads a YouTube video, extracts and converts its audio, transcr
    ```
    OPENAI_API_KEY=sk-...
    PINECONE_API_KEY=your_pinecone_api_key
-   PINECONE_ENV=your_pinecone_environment   # for example: us-west1-gcp
    FLASK_HOST=0.0.0.0
    FLASK_PORT=3001
    FLASK_DEBUG=true
@@ -91,8 +96,7 @@ youtube_audio_rag_pipeline/
     ├── categories.py        ← classifies each chunk into data engineering categories
     ├── logger.py            ← configures logging to console and file
     ├── server.py            ← Flask web application (`/process` and `/ask`)
-    ├── main.py              ← CLI script to run the full pipeline
-    └── pinecone_index_manager.py  ← script to delete and recreate your Pinecone index
+    └── main.py              ← CLI script to run the full pipeline
 ```
 
 ---
@@ -143,10 +147,6 @@ youtube_audio_rag_pipeline/
 
 ---
 
-## Managing the Pinecone Index
-
-If you switch to an embedding model with a different vector dimension (for example, `text-embedding-3-large` outputs 3072 dimensions), you must recreate your Pinecone index with the matching dimension:
-
 ## Recreate Your Pinecone Index Manually
 
 1. Log in to your Pinecone console at https://app.pinecone.io.  
@@ -159,8 +159,7 @@ If you switch to an embedding model with a different vector dimension (for examp
    - **Environment**: pick your Pinecone environment (e.g. `us-west1-gcp`)  
 5. Click **Create**.  
 
-Your index will now be empty and configured for 3072-dimensional vectors, so you can re-run the pipeline or use the UI without any dimension-mismatch errors.  
-
+Your index will now be empty and configured for 3072-dimensional vectors, matching the embedding model.
 
 ---
 

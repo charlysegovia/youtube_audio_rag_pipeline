@@ -17,12 +17,10 @@ load_dotenv()
 # service keys
 OPENAI_API_KEY   = os.getenv("OPENAI_API_KEY")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-PINECONE_ENV     = os.getenv("PINECONE_ENV")
 
 # Pinecone client instance
 PINECONE_CLIENT = Pinecone(
-    api_key=PINECONE_API_KEY,
-    environment=PINECONE_ENV
+    api_key=PINECONE_API_KEY
 )
 
 # dropdown indices
